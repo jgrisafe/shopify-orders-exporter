@@ -35,4 +35,6 @@ Last run ```node json_to_csv``` to generate the csv file. Then you're done!
 
 ## NOTES
 1. If you want the CSV headers in a specific order, you can edit the fields.js file. 
-Do not change the keys, however, or they will not map correctly.
+Do not change the keys, however, or they will not map correctly. This file shows you all 
+the data you will get from the order. You can also remove items you do not want included 
+in the csv file.

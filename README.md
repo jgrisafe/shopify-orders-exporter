@@ -23,7 +23,7 @@ set these variables in app.js:
 ```
 /* API Variables
 ===============================================*/
-const url = '/admin/orders.json?limit='; // root api call
+const url = '/admin/orders.json?limit='; // root api call, this need not be changed
 const order_start_point = 1234; // export starts AFTER this ID, not including it
 const orders_per_request = 250; // requests per api call, may reduce for smaller exports. max 250
 ```

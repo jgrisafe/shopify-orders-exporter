@@ -1,0 +1,14 @@
+{
+  "name": "order_export",
+  "author": "Joey Grisafe <jgrisasfe@gmail.com",
+  "version": "0.1.1",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.0",
+    "json2csv": "^3.6.1",
+    "jsonfile": "^2.3.1",
+    "shopify-node-api": "^1.7.2",
+    "shopify-node-promise": "^1.0.0"
+  },
+  "devDependencies": {}
+}

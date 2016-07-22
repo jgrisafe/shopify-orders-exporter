@@ -1,9 +1,9 @@
 # shopify-orders-export
 
 Script to export orders from Shopify with all available API data. 
-Create a csv with all orders past a certain order ID.
+Creates a csv with all orders past a certain order ID. Option to set a date coming soon.
 
-Run npm install to begin, you'll also need a shopify_config.js file in this format:
+Run npm install to begin, first you'll need to create a shopify_config.js file in this format:
 
 ```
 module.exports = {

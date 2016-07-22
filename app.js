@@ -17,9 +17,9 @@ const filters = {
 /* API Variables
 ===============================================*/
 const url = '/admin/orders.json?limit='; // root api call
-const order_start_point = 1300406531; // beginning of preorders
-// const order_start_point = 3346547971; // test from recent order
+const order_start_point = 1234; // export starts AFTER this ID, not including it
+const orders_per_request = 250; // requests per api call, may reduce for smaller exports. max 250
 
 /* APP
 ===============================================*/
-orders_to_json(url, order_start_point, orders_json, filters);
+orders_to_json(url, order_start_point, orders_json, filters, orders_per_request);

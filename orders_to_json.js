@@ -184,8 +184,8 @@ function write_orders(url, start_id, output_file, chunk_size, filters, first_ord
   });
 }
 
-module.exports = (url, start_id, output_file, filters) => {
-  write_orders(url, start_id, output_file, 250, filters, true);
+module.exports = (url, start_id, output_file, filters, orders_per_request) => {
+  write_orders(url, start_id, output_file, orders_per_request, filters, true);
 }
 
 

@@ -1,6 +1,7 @@
 # shopify-orders-export
 
-Script to export orders from Shopify with all available API data.
+Script to export orders from Shopify with all available API data. 
+Create a csv with all orders past a certain order ID.
 
 Run npm install to begin, you'll also need a shopify_config.js file in this format:
 
@@ -25,9 +26,13 @@ set these variables in app.js:
 ===============================================*/
 const url = '/admin/orders.json?limit='; // root api call, this need not be changed
 const order_start_point = 1234; // export starts AFTER this ID, not including it
-const orders_per_request = 250; // requests per api call, may reduce for smaller exports. max 250
+const orders_per_request = 250; // requests per api call, may reduce for smaller exports. max 250. Leave at 250 for quicker runtime.
 ```
 
 First run ```node app``` to create the json file.
 
 Last run ```node json_to_csv``` to generate the csv file. Then you're done!
+
+## NOTES
+1. If you want the CSV headers in a specific order, you can edit the fields.js file. 
+Do not change the keys, however, or they will not map correctly.

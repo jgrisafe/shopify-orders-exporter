@@ -26,7 +26,8 @@ set these variables in app.js:
 ===============================================*/
 const url = '/admin/orders.json?limit='; // root api call, this need not be changed
 const order_start_point = 1234; // export starts AFTER this ID, not including it
-const orders_per_request = 250; // requests per api call, may reduce for smaller exports. max 250. Leave at 250 for quicker runtime.
+const orders_per_request = 250; // requests per api call, may reduce for smaller exports (max 250). 
+                                   Leave at 250 for quicker runtime.
 ```
 
 First run ```node app``` to create the json file.

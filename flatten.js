@@ -4,7 +4,7 @@
  * FLATTEN                             *
  *=====================================*
  * this function will completely       *
- * flatten an object, prending the     *
+ * flatten an object, prepending the   *
  * keys as it goes deeper              *
  **************************************/
 
@@ -12,10 +12,6 @@ module.exports = function flatten(object, output_object, key_prefix) {
 
   // if object is not an object, or is falsy, we are as deep as it goes. Write it!
   if (typeof object !== 'object' || !object) {
-
-    // if (output_object.hasOwnProperty(key_prefix)) {
-    //   throw new Error('property already exists: ' + key_prefix);
-    // }
 
     output_object[key_prefix] = object;
 

@@ -2,9 +2,10 @@
 
 const shopifyAPI = require('shopify-node-api');
 const fs = require('fs');
-const flatten = require('./flatten.js');
 const waterfall = require('async/waterfall');
 const each = require('async/each');
+const flatten = require('flat'); // node package for flatten
+// const flatten = require('./flatten.js'); // previous script for flatten
 
 /* SHOPIFY SETUP
 ===============================================*/
@@ -38,6 +39,7 @@ const filterOrders = (orders, filters, callback) => {
     let passed_filters = true;
     for(let filter in filters) {
       if(order[filter] != filters[filter]) {
+        console.log("filtered order: " + order.name)
         return false;
       }
     }
@@ -86,23 +88,23 @@ const orders_to_line_items = (orders, callback) => {
 const flattenOrders = (orders, callback) => {
   let flattened_orders = orders.map((order) => {
     let flat_order = {};
-    flatten(order, flat_order);
-    return flat_order;
+    return flatten(order, {delimiter: '_'});
+    // return flat_order;
   });
   callback(null, flattened_orders);
 }
 
-const write_order_chunk = (stream, orders, first_order, callback) => {
+const write_order_chunk = (stream, orders, is_first_order, callback) => {
   let last_order_id;
   each(orders, (order, each_callback) => {
     last_order_id = order.id;
     try {
-      if(first_order) {
+      if(is_first_order) {
         stream.write(JSON.stringify(order));
       } else {
         stream.write(',' + JSON.stringify(order));
       }
-      first_order = false;
+      is_first_order = false;
       each_callback(null);
     } catch (err) {
       console.log(err);
@@ -113,7 +115,7 @@ const write_order_chunk = (stream, orders, first_order, callback) => {
   });
 }
 
-function write_orders(url, start_id, output_file, chunk_size, filters, first_order, stream) {
+function write_orders(url, start_id, output_file, chunk_size, filters, is_first_order, stream) {
   let full_url = url + chunk_size + '&since_id=' + start_id;
   let current_chunk_size;
 
@@ -122,7 +124,7 @@ function write_orders(url, start_id, output_file, chunk_size, filters, first_ord
     function(callback) {
       if (stream) {
         callback(null, stream);
-        first_order = false;
+        is_first_order = false;
       } else {
         startJsonFile(output_file, (err, stream) => {
           callback(err, stream);
@@ -156,7 +158,7 @@ function write_orders(url, start_id, output_file, chunk_size, filters, first_ord
     },
     // write the orders to file
     function(stream, flattened_orders, callback) {
-       write_order_chunk(stream, flattened_orders, first_order, (err, last_order_id) => {
+       write_order_chunk(stream, flattened_orders, is_first_order, (err, last_order_id) => {
         callback(err, stream, last_order_id);
        });
     },

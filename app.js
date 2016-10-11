@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config()
 const orders_to_json = require('./orders_to_json.js');
 
 /* CSV & JSON Files
@@ -18,7 +18,7 @@ const filters = {
 ===============================================*/
 const url = '/admin/orders.json?limit='; // root api call
 const order_start_point = 3196009091; // export starts AFTER this ID, not including it
-const orders_per_request = 50; // requests per api call, may reduce for smaller exports. max 250
+const orders_per_request = 250; // requests per api call, may reduce for smaller exports. max 250
 
 /* APP
 ===============================================*/

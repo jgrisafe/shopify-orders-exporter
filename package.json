@@ -3,8 +3,13 @@
   "author": "Joey Grisafe <jgrisasfe@gmail.com",
   "version": "0.1.1",
   "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "async": "^2.0.0",
+    "dot-env": "0.0.1",
+    "dotenv": "^2.0.0",
     "flat": "^2.0.1",
     "json2csv": "^3.6.1",
     "jsonfile": "^2.3.1",
